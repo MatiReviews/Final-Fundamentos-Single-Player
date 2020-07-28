@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de origen\Player">
+      <UniqueIdentifier>{43731af8-59d4-4c60-852c-6ad9b01679a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Collision">
+      <UniqueIdentifier>{33819e58-627f-4e9b-927c-834c1a74e64e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\FillMatrix">
+      <UniqueIdentifier>{206817c2-53c5-45f3-8380-4db65859185f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\ClearMatrix">
+      <UniqueIdentifier>{3c1a04c8-7b42-4198-bf67-5847cb7048f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\ShowToScreen">
+      <UniqueIdentifier>{764c8a7c-3d04-41ec-be42-684aa4c8450e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Console">
+      <UniqueIdentifier>{49c9f101-c084-45fc-93b9-52ccc616fd80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\ActiveModes">
+      <UniqueIdentifier>{725f125f-6fa2-4b5c-b5bd-f28c5faa8310}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionAsterisk.cpp">
+      <Filter>Archivos de origen\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionDoubleXpMode.cpp">
+      <Filter>Archivos de origen\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionSpeedMode.cpp">
+      <Filter>Archivos de origen\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearMatrix.cpp">
+      <Filter>Archivos de origen\ClearMatrix</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearPowerUp.cpp">
+      <Filter>Archivos de origen\ClearMatrix</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionGodMode.cpp">
+      <Filter>Archivos de origen\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowActiveMode.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowControls.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowMatrix.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowModesInfo.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowPoints.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowScoreTable.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="SetGameConsoleSize.cpp">
+      <Filter>Archivos de origen\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTable.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleXpActive.cpp">
+      <Filter>Archivos de origen\ActiveModes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSpeedActive.cpp">
+      <Filter>Archivos de origen\ActiveModes</Filter>
+    </ClCompile>
+    <ClCompile Include="GodModeActive.cpp">
+      <Filter>Archivos de origen\ActiveModes</Filter>
+    </ClCompile>
+    <ClCompile Include="PointsCounterActive.cpp">
+      <Filter>Archivos de origen\ActiveModes</Filter>
+    </ClCompile>
+    <ClCompile Include="InitPositions.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="InitColors.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="FillMatrix.cpp">
+      <Filter>Archivos de origen\FillMatrix</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpFill.cpp">
+      <Filter>Archivos de origen\FillMatrix</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="RowsCols.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SetColor.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SleepSpeed.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowToScreen.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearMatrix.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="FillMatrix.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveModes.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTable.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixObj.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="playerMode.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
