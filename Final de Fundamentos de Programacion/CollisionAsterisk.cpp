@@ -1,15 +1,15 @@
 #include "Player.h"
 #include "RowsCols.h"
-#include "MatrixObj.h"
+#include "Collision.h"
+#include "SetScoreTable.h"
 
-bool CollisionAsterisk(Player player, char matrix[][cols])
+void CollisionAsterisk(Player& player, char matrix[][cols], int scoreTable[cantScores], int indexST)
 {
-    if (matrix[player.GetY()][player.GetX()] == (char)MatrixObj::Asterisk)
+    if (player.GetGodMode() != true)
     {
-        return true;
-    }
-    else
-    {
-        return false;
+        if (PlayerCollision(player, matrix))
+        {
+            SetScoreTable(scoreTable, player, indexST);
+        }
     }
 }

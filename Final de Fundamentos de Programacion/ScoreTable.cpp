@@ -1,10 +1,11 @@
 #include "RowsCols.h"
+#include "Player.h"
 
-void ScoreTable(int scoreTable[cantScores], int& playerScore, int indexST)
+void ScoreTable(int scoreTable[cantScores], Player player, int indexST)
 {
     for (short i = cantScores - 1; i >= 0; i--)
     {
-        if (playerScore > scoreTable[i])
+        if (player.GetPoints() > scoreTable[i])
         {
             indexST = i; //setea el indice segun la posicion en la que esté el num ingresado.
         }
@@ -17,6 +18,6 @@ void ScoreTable(int scoreTable[cantScores], int& playerScore, int indexST)
             scoreTable[i] = scoreTable[i - 1]; //el indice anterior pasa a ser el indice que le sigue.
         }
 
-        scoreTable[indexST] = playerScore;
+        scoreTable[indexST] = player.GetPoints();
     }
 }

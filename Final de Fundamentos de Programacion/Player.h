@@ -1,22 +1,28 @@
 #pragma once
 #include "Color.h"
-#include "playerMode.h"
+#include "GameModes.h"
 
 struct Player
 {
 private:
-    playerMode myMode;
+    gameModes playerModes;
 
     int x = 3;
     int y = 3;
 
     int points = 0;
-    
+
     char character = 'P';
-    bool alive = false;
+
+    //bool godMode = false;
+    //bool fastMode = false;
+    //bool doubleMode = false;
+
     bool collision = false;
 
+
 public:
+
     void MoveUp();
     void MoveDown();
     void MoveLeft();
@@ -25,6 +31,7 @@ public:
     //Get
     int GetX();
     int GetY();
+    bool GetCollision();
     char GetPlayerChar();
     int GetPoints();
 
@@ -37,9 +44,9 @@ public:
     int GetDoubleModeClock();
 
     //Set
-    void SetPlayerChar(char character);
     void SetPoints(int setpo);
-    void SetCollision(bool collision);    
+    void SetCollision(bool collision);
+    void SetPlayerChar(char character);
 
     void SetGodMode(bool mode);
     void SetFastMode(bool mode);
@@ -53,6 +60,11 @@ public:
     void UpdateGodModeClock();
     void UpdateFastModeClock();
     void UpdateDoubleModeClock();
+
+
+    //Otros
+    void NormalPoints();
+    void DoublePoints();
 
     //Draw
     void DrawPlayer(Player player, Color color);

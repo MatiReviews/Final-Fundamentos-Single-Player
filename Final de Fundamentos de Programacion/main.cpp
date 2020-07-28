@@ -17,6 +17,7 @@
 #include "Console.h"
 #include "ActiveModes.h"
 #include "MatrixObj.h"
+#include "GameMenu.h"
 
 void ShowTimer(int gameTimer, int gameTimerCont, int gameTimerMax);
 
@@ -35,6 +36,8 @@ int main()
     char Wall = (char)MatrixObj::Wall;  //Pared de mi array
 
     Player player;
+
+    player.SetDoubleXpMode(false);
 
    
     Position pointsPos;
@@ -119,7 +122,7 @@ int main()
     int RFMax = 15; //Cantidad de Asteriscos por el mapa
 
     int indexST = -1;
-    int scoreTable[cantScores] = { 0 };
+    int scoreBoard[cantScores] = { 0 };
 
     bool godMode = false;
     bool fastMode = false;
@@ -136,107 +139,180 @@ int main()
     int gameTimerMax = 6;    
     bool playing = true;
 
+    int mode = 0;
+    int gameMode = 0;
+
+    bool menuOn = false;
+
+    ShowGameModes();
+    SetGameModes(mode, gameMode);
+
     FillMatrix(matrix, RFMax);
     PowerUpFill(matrix, maxPU);
     
     while (playing)
     {
-        //Input
-        if (_kbhit())
+
+        if (menuOn)
         {
-            MovePlayer(player,matrix);
+            ShowGameModes();
+            SetGameModes(mode, gameMode);
+            menuOn = false;            
         }
 
-        if (fastMode)
+        if (playing)
         {
-            gameTimerMax = 9;
-        }
-        else
-        {
-            gameTimerMax = 6;
-        }
-
-        //Actualizacion
-
-
-
-        if (gameTimerCont != gameTimerMax || gameTimerCont == gameTimerMax)
-        {
-            gameTimerCont++;
-
-            if (gameTimerCont >= gameTimerMax)
+            //Input
+            if (_kbhit())
             {
-                gameTimer--;
-                gameTimerCont = 0;
+                MovePlayer(player, matrix);
+            }
 
-                if (gameTimer == 0)
+            if (fastMode)
+            {
+                gameTimerMax = 9;
+            }
+            else
+            {
+                gameTimerMax = 6;
+            }
+
+            //Actualizacion
+
+
+            //Set Mode
+            switch (gameMode)
+            {
+            case 1:
+                if (gameTimerCont != gameTimerMax || gameTimerCont == gameTimerMax)
+                {
+                    gameTimerCont++;
+
+                    if (gameTimerCont >= gameTimerMax)
+                    {
+                        gameTimer--;
+                        gameTimerCont = 0;
+
+                        if (gameTimer == 0)
+                        {
+                            playing = false;
+                        }
+                    }
+                }
+                break;
+
+            case 2:
+
+                if (PlayerCollision(player, matrix))
                 {
                     playing = false;
                 }
+                break;
+
+            case 3:
+                playing = true;
+                break;
+            }
+
+            if (cont == max)
+            {
+                ClearMatrix(matrix);
+                FillMatrix(matrix, RFMax);
+                cont = 0;
+            }
+            cont++;
+
+            if (cont2 == max2)
+            {
+                ClearPowerUp(matrix);
+                PowerUpFill(matrix, maxPU);
+                cont2 = 0;
+            }
+            cont2++;
+
+            if (CollisionGodMode(player, matrix))
+            {
+                player.SetGodMode(true);
+            }
+
+            if (gameMode != 2)
+            {
+                CollisionAsterisk(player, matrix, scoreBoard, indexST);
+            }
+
+            if (CollisionSpeedMode(player, matrix))
+            {
+                player.SetFastMode(true);
+            }
+
+            if (CollisionDoubleXpMode(player, matrix))
+            {
+                SetActiveDoubleXp(player);
+            }
+
+            PointsCounterActive(player);
+            DoubleXpActive(player);
+            GodModeActive(player);
+
+
+            system("cls");
+        }
+        
+        //Dibujado
+        if (playing)
+        {
+            ShowMatrix(matrix, matrixColor, powerUpColor);
+            player.DrawPlayer(player, playerColor);
+            ShowPoints(player, pointsColor, pointsPos);
+            ShowControls(controlColor, controlPos);
+            ShowActiveMode(player, modePos, ActiveModeColor);
+
+            if (gameMode != 2)
+            {
+                ShowScoreTable(scoreBoard, scoreTableColor, ScoreTableRecordPos, ScoreTablePointsPos);
+            }
+
+            ShowModesInfo(modeInfoPos, powerUpColor);
+
+            //Timer On / Off
+            switch (gameMode)
+            {
+            case 1:
+                ShowTimer(gameTimer, gameTimerCont, gameTimerMax);
+                break;
+            }
+        }
+        else
+        {
+            std::cout << "Perdiste" << "\n";
+            std::cout << "Volver al menu principal" << "\n";
+            std::cout << "1 - Si" << "\n";
+            std::cout << "2 - No" << "\n";
+
+            do
+            {
+                std::cin >> mode;
+            } while (mode < 1 || mode > 2);
+
+            switch (mode)
+            {
+            case 1:
+                menuOn = true;
+                playing = true;
+                player.SetCollision(false);
+                break;
+
+            case 2:
+                menuOn = false;
+                break;
             }
         }
 
-        if (cont == max)
-        {
-            ClearMatrix(matrix);
-            FillMatrix(matrix, RFMax);
-            cont = 0;
-        }
-        cont++;
-
-        if (cont2 == max2)
-        { 
-            ClearPowerUp(matrix);
-            PowerUpFill(matrix, maxPU);
-            cont2 = 0;
-        }
-        cont2++;
-                
-        if (CollisionGodMode(player,matrix))
-        {
-            godMode = true;
-            modMode = 3;
-        }
-
-        if (CollisionAsterisk(player, matrix))
-        {
-            collision = true;
-        }
-
-        if (CollisionSpeedMode(player, matrix))
-        {
-            fastMode = true;
-            modMode = 1;
-        }
-
-        if (CollisionDoubleXpMode(player, matrix))
-        {            
-            doubleMode = true;           
-            modMode = 2;
-        }
-
-        PointsCounterActive(playerScore, doubleMode);
-        DoubleXpActive(doubleMode, doubleModeClock, modMode);
-        GodModeActive(godMode, collision, godModeClock, modMode, scoreTable, playerScore, indexST);
 
 
-        system("cls");
+        GameSpeedActive(player,gameSpeed);
 
-        //Dibujado
-        ShowMatrix(matrix, matrixColor, powerUpColor);
-        player.DrawPlayer(player, playerColor);
-        ShowPoints(playerScore, pointsColor, pointsPos);
-        ShowControls(controlColor, controlPos);
-        ShowActiveMode(modMode, modePos, ActiveModeColor, godMode, fastMode, doubleMode);
-        ShowScoreTable(scoreTable,scoreTableColor, ScoreTableRecordPos, ScoreTablePointsPos);
-        ShowModesInfo(modeInfoPos, powerUpColor);
-        ShowTimer(gameTimer, gameTimerCont, gameTimerMax);
-
-        GameSpeedActive(fastMode, fastModeClock, modMode,gameSpeed);
-
-    }
-
- 
+    } 
 }
 
 void ShowTimer(int gameTimer, int gameTimerCont, int gameTimerMax)

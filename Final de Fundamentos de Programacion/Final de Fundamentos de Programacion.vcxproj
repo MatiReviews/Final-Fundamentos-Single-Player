@@ -145,6 +145,7 @@
     <ClCompile Include="CollisionAsterisk.cpp" />
     <ClCompile Include="CollisionDoubleXpMode.cpp" />
     <ClCompile Include="CollisionGodMode.cpp" />
+    <ClCompile Include="CollisionPlayer.cpp" />
     <ClCompile Include="CollisionSpeedMode.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DoubleXpActive.cpp" />
@@ -160,8 +161,11 @@
     <ClCompile Include="PowerUpFill.cpp" />
     <ClCompile Include="ScoreTable.cpp" />
     <ClCompile Include="SetGameConsoleSize.cpp" />
+    <ClCompile Include="SetGameModes.cpp" />
+    <ClCompile Include="SetScoreTable.cpp" />
     <ClCompile Include="ShowActiveMode.cpp" />
     <ClCompile Include="ShowControls.cpp" />
+    <ClCompile Include="ShowGameModes.cpp" />
     <ClCompile Include="ShowMatrix.cpp" />
     <ClCompile Include="ShowModesInfo.cpp" />
     <ClCompile Include="ShowPoints.cpp" />
@@ -174,6 +178,9 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="FillMatrix.h" />
+    <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="GameModes.h" />
+    <ClInclude Include="SetScoreTable.h" />
     <ClInclude Include="MatrixObj.h" />
     <ClInclude Include="playerMode.h" />
     <ClInclude Include="ScoreTable.h" />

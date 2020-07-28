@@ -3,15 +3,16 @@
 #include "Color.h"
 #include "Position.h"
 #include "Cursor.h"
+#include "Player.h"
 
-void ShowActiveMode(int modMode, Position modePos, Color color, bool godMode, bool fastMode, bool doubleMode)
+void ShowActiveMode(Player player, Position modePos, Color color)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color1);
     gotoxy(modePos.x, modePos.y);
     std::cout << "Mode" << "\n";
 
     gotoxy(modePos.x, modePos.y + 1);
-    if (fastMode)
+    if (player.GetFastMode())
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color3);
         std::cout << "Fast" << "\n";
@@ -23,7 +24,7 @@ void ShowActiveMode(int modMode, Position modePos, Color color, bool godMode, bo
     }
 
     gotoxy(modePos.x, modePos.y + 2);
-    if (doubleMode)
+    if (player.GetDoubleXpMode())
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color3);
         std::cout << "2XP" << "\n";
@@ -35,7 +36,7 @@ void ShowActiveMode(int modMode, Position modePos, Color color, bool godMode, bo
     }
 
     gotoxy(modePos.x, modePos.y + 3);
-    if (godMode)
+    if (player.GetGodMode())
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color3);
         std::cout << "God" << "\n";

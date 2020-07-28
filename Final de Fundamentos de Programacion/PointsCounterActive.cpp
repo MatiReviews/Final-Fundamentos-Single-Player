@@ -1,11 +1,13 @@
-void PointsCounterActive(int& points, bool doublePoints)
+#include "Player.h"
+
+void PointsCounterActive(Player& player)
 {
-    if (doublePoints != true)
+    if (player.GetDoubleXpMode() != true)
     {
-        points++;
+        player.NormalPoints();
     }
     else
     {
-        points += 2;
+        player.DoublePoints();
     }
 };

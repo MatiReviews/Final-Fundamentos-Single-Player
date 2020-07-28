@@ -37,6 +37,11 @@ int Player::GetY()
 	return y;
 }
 
+bool Player::GetCollision()
+{
+	return collision;
+}
+
 char Player::GetPlayerChar()
 {
 	return character;
@@ -49,32 +54,32 @@ int Player::GetPoints()
 
 bool Player::GetGodMode()
 {
-	return myMode.godMode;
+	return playerModes.godMode;
 }
 
 bool Player::GetFastMode()
 {
-	return myMode.fastMode;
+	return playerModes.fastMode;
 }
 
 bool Player::GetDoubleXpMode()
 {
-	return myMode.doubleXpMode;
+	return playerModes.doubleXpMode;
 }
 
 int Player::GetGodModeClock()
 {
-	return myMode.godModeClock;
+	return playerModes.godModeClock;
 }
 
 int Player::GetFastModeClock()
 {
-	return myMode.fastModeClock;
+	return playerModes.fastModeClock;
 }
 
 int Player::GetDoubleModeClock()
 {
-	return myMode.doubleXpModeClock;
+	return playerModes.doubleXpModeClock;
 }
 
 
@@ -96,48 +101,60 @@ void Player::SetCollision(bool pCollision)
 
 void Player::SetGodMode(bool mode)
 {
-	myMode.godMode = mode;
+	playerModes.godMode = mode;
 }
 
 void Player::SetFastMode(bool mode)
 {
-	myMode.fastMode = mode;
+	playerModes.fastMode = mode;
 }
 
 void Player::SetDoubleXpMode(bool mode)
 {
-	myMode.doubleXpMode = mode;
+	playerModes.doubleXpMode = mode;
 }
 
 void Player::SetGodModeClock(int clock)
 {
-	myMode.godModeClock = clock;
+	playerModes.godModeClock = clock;
 }
 
 void Player::SetFastModeClock(int clock)
 {
-	myMode.fastModeClock = clock;
+	playerModes.fastModeClock = clock;
 }
 
 void Player::SetDoubleXpModeClock(int clock)
 {
-	myMode.doubleXpModeClock = clock;
+	playerModes.doubleXpModeClock = clock;
 }
 
 //Update
 void Player::UpdateGodModeClock()
 {
-	myMode.godModeClock--;
+	playerModes.godModeClock--;
 }
 
 void Player::UpdateFastModeClock()
 {
-	myMode.fastModeClock--;
+	playerModes.fastModeClock--;
 }
 
 void Player::UpdateDoubleModeClock()
 {
-	myMode.doubleXpModeClock--;
+	playerModes.doubleXpModeClock--;
+}
+
+
+//Otros
+void Player::NormalPoints()
+{
+	points++;
+}
+
+void Player::DoublePoints()
+{
+	points += 2;
 }
 
 

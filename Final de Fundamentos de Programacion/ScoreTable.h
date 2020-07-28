@@ -1,4 +1,5 @@
 #pragma once
 #include "RowsCols.h"
+#include "Player.h"
 
-void ScoreTable(int scoreTable[cantScores], int& playerScore, int indexST);
+void ScoreTable(int scoreTable[cantScores], Player player, int indexST);

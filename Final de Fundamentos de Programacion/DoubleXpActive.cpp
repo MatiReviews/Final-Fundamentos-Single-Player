@@ -1,17 +1,23 @@
-void DoubleXpActive(bool& doubleMode, int& doubleModeClock, int& modMode)
-{
-    if (doubleMode)
-    {
-        if (doubleModeClock > 0)
-        {
-            doubleModeClock--;
+#include "Player.h"
 
-            if (doubleModeClock == 0)
+void DoubleXpActive(Player& player)
+{
+    if (player.GetDoubleXpMode() == true)
+    {
+        if (player.GetDoubleModeClock() > 0)
+        {
+            player.UpdateDoubleModeClock();
+
+            if (player.GetDoubleModeClock() == 0)
             {
-                doubleMode = false;
-                modMode = 0;
-                doubleModeClock = 40;
+                player.SetDoubleXpMode(false);
+                player.SetDoubleXpModeClock(40);
             }
         }
     }
+}
+
+void SetActiveDoubleXp(Player& player)
+{
+    player.SetDoubleXpMode(true);
 }

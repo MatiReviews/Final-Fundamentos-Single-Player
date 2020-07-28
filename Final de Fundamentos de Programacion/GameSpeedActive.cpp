@@ -1,9 +1,11 @@
 #include <windows.h>
+#include "Player.h"
 #include "SleepSpeed.h"
 
-void GameSpeedActive(bool& fastMode, int& fastModeClock, int& modMode, SleepSpeed speed)
+void GameSpeedActive(Player& player, SleepSpeed speed)
 {
-    if (fastMode != true)
+
+    if (player.GetFastMode() != true)
     {
         Sleep(speed.normal);
     }
@@ -11,15 +13,14 @@ void GameSpeedActive(bool& fastMode, int& fastModeClock, int& modMode, SleepSpee
     {
         Sleep(speed.fast);
 
-        if (fastModeClock > 0)
+        if (player.GetFastModeClock() > 0)
         {
-            fastModeClock--;
+            player.UpdateFastModeClock();
 
-            if (fastModeClock == 0)
+            if (player.GetFastModeClock() == 0)
             {
-                fastMode = false;
-                modMode = 0;
-                fastModeClock = 40;
+                player.SetFastMode(false);
+                player.SetFastModeClock(40);
             }
         }
     }

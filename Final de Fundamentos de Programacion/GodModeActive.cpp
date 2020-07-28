@@ -1,28 +1,22 @@
 #include "RowsCols.h"
+#include "Player.h"
 #include "ScoreTable.h"
 
-void GodModeActive(bool& godMode, bool& collision, int& godModeClock, int& modMode, int scoreTable[cantScores], int& playerScore, int indexST)
+void GodModeActive(Player& player)
 {
-    if (godMode && collision|| godMode && collision == false)
+    if (player.GetGodMode() && player.GetCollision() || player.GetGodMode() && player.GetCollision() == false)
     {
-        if (godModeClock > 0)
+        if (player.GetGodModeClock() > 0)
         {
-            godModeClock--;
+            player.UpdateGodModeClock();
 
-            if (godModeClock == 0)
+            if (player.GetGodModeClock() == 0)
             {
-                godMode = false;
-                collision = false;
-                modMode = 0;
-                godModeClock = 40;
+                player.SetGodMode(false);
+                player.SetCollision(false);
+                player.SetGodModeClock(40);
             }
         }
-    }
-    else if (godMode == false && collision)
-    {
-        ScoreTable(scoreTable, playerScore, indexST);
-        collision = false;
-        playerScore = 0;
     }
 
 }

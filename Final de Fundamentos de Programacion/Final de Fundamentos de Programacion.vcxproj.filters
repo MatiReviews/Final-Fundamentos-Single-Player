@@ -34,6 +34,12 @@
     <Filter Include="Archivos de origen\ActiveModes">
       <UniqueIdentifier>{725f125f-6fa2-4b5c-b5bd-f28c5faa8310}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Menu">
+      <UniqueIdentifier>{6052abb9-cc24-42ef-a814-f2506415d39e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Menu">
+      <UniqueIdentifier>{bf972ceb-0081-4d4b-89f6-101124cabc41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -114,6 +120,18 @@
     <ClCompile Include="PowerUpFill.cpp">
       <Filter>Archivos de origen\FillMatrix</Filter>
     </ClCompile>
+    <ClCompile Include="ShowGameModes.cpp">
+      <Filter>Archivos de origen\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="SetGameModes.cpp">
+      <Filter>Archivos de origen\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionPlayer.cpp">
+      <Filter>Archivos de origen\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="SetScoreTable.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -168,6 +186,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="playerMode.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>Archivos de encabezado\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameModes.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SetScoreTable.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

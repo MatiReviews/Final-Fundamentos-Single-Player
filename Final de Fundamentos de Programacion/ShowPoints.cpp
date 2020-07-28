@@ -2,8 +2,9 @@
 #include "Cursor.h"
 #include "color.h"
 #include "Position.h"
+#include "Player.h"
 
-void ShowPoints(int points, Color color, Position showPointsPos)
+void ShowPoints(Player player, Color color, Position showPointsPos)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color1);
     gotoxy(showPointsPos.x, showPointsPos.y);
@@ -11,5 +12,5 @@ void ShowPoints(int points, Color color, Position showPointsPos)
 
     gotoxy(showPointsPos.x, showPointsPos.y + 1);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color2);
-    std::cout << points;
+    std::cout << player.GetPoints();
 };
