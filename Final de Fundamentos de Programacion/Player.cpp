@@ -89,6 +89,16 @@ void Player::SetPlayerChar(char playerSkin)
 	character = playerSkin;
 }
 
+void Player::SetX(int posX)
+{
+	x = posX;
+}
+
+void Player::SetY(int posY)
+{
+	y = posY;
+}
+
 void Player::SetPoints(int setpo)
 {
 	points = setpo;

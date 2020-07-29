@@ -149,12 +149,15 @@
     <ClCompile Include="CollisionSpeedMode.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DoubleXpActive.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameSpeedActive.cpp" />
     <ClCompile Include="GodModeActive.cpp" />
+    <ClCompile Include="HowToPlayLogic.cpp" />
     <ClCompile Include="InitColors.cpp" />
     <ClCompile Include="InitPositions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="MainMenuLogic.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PointsCounterActive.cpp" />
     <ClCompile Include="FillMatrix.cpp" />
@@ -162,14 +165,19 @@
     <ClCompile Include="ScoreTable.cpp" />
     <ClCompile Include="SetGameConsoleSize.cpp" />
     <ClCompile Include="SetGameModes.cpp" />
+    <ClCompile Include="PlayerInitPos.cpp" />
     <ClCompile Include="SetScoreTable.cpp" />
     <ClCompile Include="ShowActiveMode.cpp" />
     <ClCompile Include="ShowControls.cpp" />
     <ClCompile Include="ShowGameModes.cpp" />
+    <ClCompile Include="ShowHowToPlay.cpp" />
+    <ClCompile Include="ShowMainMenu.cpp" />
     <ClCompile Include="ShowMatrix.cpp" />
     <ClCompile Include="ShowModesInfo.cpp" />
     <ClCompile Include="ShowPoints.cpp" />
     <ClCompile Include="ShowScoreTable.cpp" />
+    <ClCompile Include="ShowTitleScreen.cpp" />
+    <ClCompile Include="TitleScreenOpt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveModes.h" />
@@ -180,6 +188,8 @@
     <ClInclude Include="FillMatrix.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameModes.h" />
+    <ClInclude Include="KBKeys.h" />
+    <ClInclude Include="SetInitPos.h" />
     <ClInclude Include="SetScoreTable.h" />
     <ClInclude Include="MatrixObj.h" />
     <ClInclude Include="playerMode.h" />

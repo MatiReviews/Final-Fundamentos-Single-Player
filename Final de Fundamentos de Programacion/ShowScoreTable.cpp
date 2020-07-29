@@ -5,7 +5,7 @@
 #include "Cursor.h"
 #include "Position.h"
 
-void ShowScoreTable(int ScoreTable[cantScores], Color color, Position recordPos, Position pointsStPos)
+void ShowScoreBoard(int ScoreTable[cantScores], Color color, Position recordPos, Position pointsStPos)
 {
     gotoxy(recordPos.x, recordPos.y);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color1);

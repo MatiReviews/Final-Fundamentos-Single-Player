@@ -7,16 +7,12 @@ struct Player
 private:
     gameModes playerModes;
 
-    int x = 3;
-    int y = 3;
+    int x = 0;
+    int y = 0;
 
     int points = 0;
 
-    char character = 'P';
-
-    //bool godMode = false;
-    //bool fastMode = false;
-    //bool doubleMode = false;
+    char character = 'P'; 
 
     bool collision = false;
 
@@ -44,6 +40,8 @@ public:
     int GetDoubleModeClock();
 
     //Set
+    void SetX(int posX);
+    void SetY(int posY);
     void SetPoints(int setpo);
     void SetCollision(bool collision);
     void SetPlayerChar(char character);

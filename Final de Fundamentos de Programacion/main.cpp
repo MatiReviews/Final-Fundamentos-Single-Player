@@ -18,6 +18,7 @@
 #include "ActiveModes.h"
 #include "MatrixObj.h"
 #include "GameMenu.h"
+#include "SetInitPos.h"
 
 void ShowTimer(int gameTimer, int gameTimerCont, int gameTimerMax);
 
@@ -27,7 +28,7 @@ int main()
     const unsigned int ConsoleWidth = 1280;
     const unsigned int ConsoleHeight = 768;
 
-    SetConsoleTitle(TEXT("Adventure Game"));
+    SetConsoleTitle(TEXT("Asterisk"));
 
     SetGameConsoleSize(ConsoleWidth, ConsoleHeight);
 
@@ -35,9 +36,7 @@ int main()
 
     char Wall = (char)MatrixObj::Wall;  //Pared de mi array
 
-    Player player;
-
-    player.SetDoubleXpMode(false);
+    Player player;   
 
    
     Position pointsPos;
@@ -48,13 +47,13 @@ int main()
     modePos.x = 42;
     modePos.y = 0;
 
-    Position ScoreTableRecordPos;
-    ScoreTableRecordPos.x = 49;
-    ScoreTableRecordPos.y = 0;
+    Position SBRecordPos;
+    SBRecordPos.x = 49;
+    SBRecordPos.y = 0;
     
-    Position ScoreTablePointsPos;
-    ScoreTablePointsPos.x = 50;
-    ScoreTablePointsPos.y = 1;
+    Position SBPointsPos;
+    SBPointsPos.x = 50;
+    SBPointsPos.y = 1;
 
     Position controlPos;
     controlPos.x = 33;
@@ -81,9 +80,9 @@ int main()
     pointsColor.color1 = (int)SetColor::Red;
     pointsColor.color2 = (int)SetColor::White;
 
-    Color scoreTableColor;
-    scoreTableColor.color1 = (int)SetColor::Yellow;
-    scoreTableColor.color2 = (int)SetColor::White;
+    Color SBColor;
+    SBColor.color1 = (int)SetColor::Yellow;
+    SBColor.color2 = (int)SetColor::White;
 
     Color ActiveModeColor;
     ActiveModeColor.color1 = (int)SetColor::Red;
@@ -92,6 +91,12 @@ int main()
 
     Color controlColor;
     controlColor.color1 = (int)SetColor::White;
+
+    Color TitleScreenColor;
+    TitleScreenColor.color1 = (int)SetColor::IntenseGreen;
+
+    Color MenuColor;
+    MenuColor.color1 = (int)SetColor::White;
 
     SleepSpeed gameSpeed;
     gameSpeed.fast = 50;
@@ -117,48 +122,35 @@ int main()
     int cont2 = 0;
     int max = 9;   //ciclos a esperar para refrescar el mapa
     int max2 = 27; //ciclos a esperar para refrescar el mapa
-    int maxPU = 2; //Cantidad de PowerUp por el mapa
-    int playerScore = 0;
+    int maxPU = 2; //Cantidad de PowerUp por el mapa    
     int RFMax = 15; //Cantidad de Asteriscos por el mapa
 
     int indexST = -1;
-    int scoreBoard[cantScores] = { 0 };
+    int scoreBoard[cantScores] = { 0 };  
 
-    bool godMode = false;
-    bool fastMode = false;
-    bool doubleMode = false;
-    bool collision = false;
-
-    int godModeClock = 40;
-    int fastModeClock = 40;
-    int doubleModeClock = 40;
-    int modMode = 0;
-
-    int gameTimer = 300;
+    int gameTimer = 30;
     int gameTimerCont = 0;
     int gameTimerMax = 6;    
-    bool playing = true;
 
-    int mode = 0;
+    int option = 0;
+    char optionChar = ' ';
+
+    int menuSelection = 0;
     int gameMode = 0;
 
-    bool menuOn = false;
-
-    ShowGameModes();
-    SetGameModes(mode, gameMode);
+    bool playing = true;
+    bool menuOn = true;
+    bool titleScreenOn = true;
 
     FillMatrix(matrix, RFMax);
     PowerUpFill(matrix, maxPU);
     
+    SetInitPos(player, matrix);
+
     while (playing)
     {
 
-        if (menuOn)
-        {
-            ShowGameModes();
-            SetGameModes(mode, gameMode);
-            menuOn = false;            
-        }
+        GameMenu(menuOn, titleScreenOn, playing,  gameMode, menuSelection,TitleScreenColor, MenuColor);
 
         if (playing)
         {
@@ -168,7 +160,7 @@ int main()
                 MovePlayer(player, matrix);
             }
 
-            if (fastMode)
+            if (player.GetFastMode())
             {
                 gameTimerMax = 9;
             }
@@ -179,11 +171,10 @@ int main()
 
             //Actualizacion
 
-
             //Set Mode
             switch (gameMode)
             {
-            case 1:
+            case (int)CurrentGameMode::ThirtySeconds:
                 if (gameTimerCont != gameTimerMax || gameTimerCont == gameTimerMax)
                 {
                     gameTimerCont++;
@@ -201,15 +192,15 @@ int main()
                 }
                 break;
 
-            case 2:
+            case (int)CurrentGameMode::SingleLife:  
 
-                if (PlayerCollision(player, matrix))
+                if (PlayerCollision(player, matrix) && player.GetGodMode() != true)
                 {
                     playing = false;
                 }
                 break;
 
-            case 3:
+            case (int)CurrentGameMode::Unlimited:
                 playing = true;
                 break;
             }
@@ -254,7 +245,6 @@ int main()
             DoubleXpActive(player);
             GodModeActive(player);
 
-
             system("cls");
         }
         
@@ -269,10 +259,10 @@ int main()
 
             if (gameMode != 2)
             {
-                ShowScoreTable(scoreBoard, scoreTableColor, ScoreTableRecordPos, ScoreTablePointsPos);
+                ShowScoreBoard(scoreBoard, SBColor, SBRecordPos, SBPointsPos);
             }
 
-            ShowModesInfo(modeInfoPos, powerUpColor);
+            ShowModesInfo(modeInfoPos, powerUpColor); 
 
             //Timer On / Off
             switch (gameMode)
@@ -282,24 +272,82 @@ int main()
                 break;
             }
         }
-        else
+
+        //Mensaje que se muestra al terminar la partida o morir.
+        if (playing != true && menuSelection != 3)
         {
-            std::cout << "Perdiste" << "\n";
-            std::cout << "Volver al menu principal" << "\n";
+            switch (gameMode)
+            {
+            case (int)CurrentGameMode::SingleLife:
+                std::cout << "Perdiste" << "\n";
+                std::cout << "Puntuacion Maxima: " << player.GetPoints() << "\n";
+                break;
+
+            case (int)CurrentGameMode::ThirtySeconds:
+                bool entra = false;
+
+                std::cout << "Se agoto el tiempo" << "\n";
+
+                SBRecordPos.x = 0;
+                SBRecordPos.y = 2;
+                SBPointsPos.x = 0;
+                SBPointsPos.y = 3;
+
+                for (int i = 0; i < cantScores; i++)
+                {
+                    if (scoreBoard[i] != 0)
+                    {
+                        ShowScoreBoard(scoreBoard, SBColor, SBRecordPos, SBPointsPos);
+                    }
+                    else
+                    {
+                        entra = true;
+                    }
+                    break;
+                }
+
+                if (entra != false)
+                {
+                    std::cout << "Tu puntuacion fue de: " << player.GetPoints() << "\n";
+                }
+                break;
+            }
+        }
+
+
+        //Para ir al menú principal, volver a jugar o salir
+        if(playing != true && menuSelection != 3)
+        {
+            std::cout << "\nVolver al menu principal" << "\n";
             std::cout << "1 - Si" << "\n";
             std::cout << "2 - No" << "\n";
 
             do
             {
-                std::cin >> mode;
-            } while (mode < 1 || mode > 2);
+                std::cin >> option;
+            } while (option < 1 || option > 2);
 
-            switch (mode)
+            switch (option)
             {
             case 1:
                 menuOn = true;
                 playing = true;
-                player.SetCollision(false);
+                gameTimer = 30;
+                player.SetPoints(0);
+                player.SetGodMode(false);
+                player.SetFastMode(false);
+                player.SetDoubleXpMode(false);
+                SBPointsPos.x = 50;
+                SBPointsPos.y = 1;
+                SBRecordPos.x = 49;
+                SBRecordPos.y = 0;
+                for (int i = 0; i < cantScores; i++)
+                {
+                    scoreBoard[i] = 0;
+                }
+                ClearMatrix(matrix);
+                FillMatrix(matrix, RFMax);
+                SetInitPos(player, matrix);
                 break;
 
             case 2:
@@ -307,8 +355,6 @@ int main()
                 break;
             }
         }
-
-
 
         GameSpeedActive(player,gameSpeed);
 
@@ -324,7 +370,6 @@ void ShowTimer(int gameTimer, int gameTimerCont, int gameTimerMax)
     gotoxy(5, 20);
     std::cout << "game Timer Max: " << gameTimerMax << "\n";
 }
-
 
 /*
     #include <iostream>

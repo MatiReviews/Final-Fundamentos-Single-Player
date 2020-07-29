@@ -16,7 +16,7 @@ void ShowModesInfo(Position modeInfoPos, Color powerUpColor)
     std::cout << (char)PowerUp::SpeedUp;
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color4);
-    std::cout <<" - Double speed" << "\n";
+    std::cout <<" - Double Speed" << "\n";
 
 
     gotoxy(modeInfoPos.x, modeInfoPos.y + 2);
@@ -24,7 +24,7 @@ void ShowModesInfo(Position modeInfoPos, Color powerUpColor)
     std::cout << (char)PowerUp::DoublePoints;
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color4);
-    std::cout <<" - Double points" << "\n";
+    std::cout <<" - Double Points" << "\n";
 
 
     gotoxy(modeInfoPos.x, modeInfoPos.y + 3);
