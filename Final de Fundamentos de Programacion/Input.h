@@ -2,4 +2,4 @@
 #include "Player.h"
 #include "RowsCols.h"
 
-void MovePlayer(Player& player, char matrix[][cols]);
+void PlayerInput(Player& player, char matrix[][cols], char& input);

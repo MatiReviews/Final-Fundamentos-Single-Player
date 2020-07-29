@@ -1,8 +1,10 @@
 #include <iostream>
 #include <Windows.h>
 #include "SetColor.h"
+#include "Color.h"
+#include "PowerUps.h"
 
-void ShowHowToPlay()
+void ShowHowToPlay(Color powerUpColor)
 {
 	system("cls");
 	std::cout << "Bienvenido a ";
@@ -11,12 +13,15 @@ void ShowHowToPlay()
 	std::cout << "Asterisk." << "\n";
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)SetColor::White);
-	std::cout << "\nLe mostraremos lo basico para que entienda la mecanica del juego." << "\n";
+	std::cout << "Le mostraremos lo basico para que entienda la mecanica del juego." << "\n";
 
-	std::cout << "\nUsted sera el jugador 'P'. Durante su sesion de juego, estara en un mapa en donde\nse generaran asteriscos(*), los cuales debera evitar para poder juntar la mayor" << "\n";
+	std::cout << "\nEl jugador es 'P' y durante su sesion de juego, estara en un mapa en donde se\ngeneraran asteriscos(*), los cuales debera evitar para poder juntar la mayor" << "\n";
 	std::cout << "cantidad de puntos al terminar la partida." << "\n";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)SetColor::IntenseGreen);
 	std::cout << "\nModos de Juego:" << "\n";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)SetColor::White);
 	std::cout << "1.30 segundos: " << "\n";
 	std::cout << "En este modo de juego, usted contara con 30 segundos para juntar la mayor cantidad\nde puntos. " << "\n";
 
@@ -27,6 +32,26 @@ void ShowHowToPlay()
 	std::cout << "Como el nombre lo indica, podra jugar sin tiempo limite procurando hacer la mayor\npuntuacion posible. " << "\n";
 	std::cout << "Para salir de este modo, aprete la tecla ESC en su teclado." << "\n";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)SetColor::IntenseGreen);
+	std::cout << "\nPower Ups." << "\n";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color1);
+	std::cout << (char)PowerUp::SpeedUp;
 
-	std::cout << "\nESC para salir" << "\n";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color4);
+	std::cout << "- Velocidad Rapida: Duplica la velocidad de juego" << "\n";
+
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color2);
+	std::cout << (char)PowerUp::DoublePoints;
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color4);
+	std::cout << "- Puntos Dobles: Duplica la cantidad de puntos ganados" << "\n";
+	
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color3);
+	std::cout << (char)PowerUp::GodMode;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), powerUpColor.color4);	
+	std::cout << "- Modo Dios: Los asteriscos no te haran danio al tocarlos" << "\n";
+
+	std::cout << "\nESC para salir";
 }

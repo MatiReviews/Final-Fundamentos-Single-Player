@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CheckAllCollisions.cpp" />
     <ClCompile Include="ClearMatrix.cpp" />
     <ClCompile Include="ClearPowerUp.cpp" />
     <ClCompile Include="CollisionAsterisk.cpp" />
@@ -151,25 +152,37 @@
     <ClCompile Include="DoubleXpActive.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameSpeedActive.cpp" />
+    <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="GodModeActive.cpp" />
-    <ClCompile Include="HowToPlayLogic.cpp" />
-    <ClCompile Include="InitColors.cpp" />
-    <ClCompile Include="InitPositions.cpp" />
+    <ClCompile Include="GoToMainMenuInput.cpp" />
+    <ClCompile Include="HowToPlayInputc.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="MainMenuLogic.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
+    <ClCompile Include="MainMenuInput.cpp" />
+    <ClCompile Include="MatrixTimer.cpp" />
+    <ClCompile Include="PlayerDraw.cpp" />
+    <ClCompile Include="PlayerGet.cpp" />
+    <ClCompile Include="PlayerMovement.cpp" />
+    <ClCompile Include="PlayerPointsUpdate.cpp" />
+    <ClCompile Include="PlayerSet.cpp" />
+    <ClCompile Include="PlayerUpdate.cpp" />
     <ClCompile Include="PointsCounterActive.cpp" />
     <ClCompile Include="FillMatrix.cpp" />
     <ClCompile Include="PowerUpFill.cpp" />
+    <ClCompile Include="PowerUpTimer.cpp" />
+    <ClCompile Include="QuitGame.cpp" />
+    <ClCompile Include="ResetGameVars.cpp" />
     <ClCompile Include="ScoreTable.cpp" />
     <ClCompile Include="SetGameConsoleSize.cpp" />
     <ClCompile Include="SetGameModes.cpp" />
     <ClCompile Include="PlayerInitPos.cpp" />
+    <ClCompile Include="SetGameSpeed.cpp" />
     <ClCompile Include="SetScoreTable.cpp" />
     <ClCompile Include="ShowActiveMode.cpp" />
     <ClCompile Include="ShowControls.cpp" />
     <ClCompile Include="ShowGameModes.cpp" />
+    <ClCompile Include="ShowGameTimer.cpp" />
+    <ClCompile Include="ShowGoToMainMenu.cpp" />
     <ClCompile Include="ShowHowToPlay.cpp" />
     <ClCompile Include="ShowMainMenu.cpp" />
     <ClCompile Include="ShowMatrix.cpp" />
@@ -177,7 +190,7 @@
     <ClCompile Include="ShowPoints.cpp" />
     <ClCompile Include="ShowScoreTable.cpp" />
     <ClCompile Include="ShowTitleScreen.cpp" />
-    <ClCompile Include="TitleScreenOpt.cpp" />
+    <ClCompile Include="TitleScreenInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveModes.h" />
@@ -185,10 +198,18 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="CurrentGameMode.h" />
     <ClInclude Include="FillMatrix.h" />
     <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="MenuInput.h" />
     <ClInclude Include="GameModes.h" />
+    <ClInclude Include="GameTimers.h" />
     <ClInclude Include="KBKeys.h" />
+    <ClInclude Include="MenuOptions.h" />
+    <ClInclude Include="MenuShow.h" />
+    <ClInclude Include="QuitGameCheck.h" />
+    <ClInclude Include="ResetGameVars.h" />
+    <ClInclude Include="SetGameSpeed.h" />
     <ClInclude Include="SetInitPos.h" />
     <ClInclude Include="SetScoreTable.h" />
     <ClInclude Include="MatrixObj.h" />

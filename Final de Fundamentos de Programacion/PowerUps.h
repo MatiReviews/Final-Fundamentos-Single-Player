@@ -2,7 +2,7 @@
 
 enum class PowerUp
 {
-	GodMode = 'G',
-	SpeedUp = 'F',
+	GodMode = 'D',
+	SpeedUp = 'R',
 	DoublePoints = '2'
 };

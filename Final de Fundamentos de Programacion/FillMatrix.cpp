@@ -2,7 +2,7 @@
 #include "RowsCols.h"
 #include "MatrixObj.h"
 
-void FillMatrix(char matrix[][cols], int max)
+void FillMatrix(char matrix[][cols], int maxAsterisks)
 {
     int cont = 0;
 
@@ -27,6 +27,6 @@ void FillMatrix(char matrix[][cols], int max)
         }
 
         cont++;
-    } while (cont < max);
+    } while (cont < maxAsterisks);
 
 }

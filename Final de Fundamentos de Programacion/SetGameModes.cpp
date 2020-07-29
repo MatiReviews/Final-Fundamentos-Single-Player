@@ -1,24 +1,29 @@
-#include <iostream>
+#include <conio.h>
+#include "KBKeys.h"
+#include "GameModes.h"
+#include "CurrentGameMode.h"
 
-void SetGameModes(int mode, int& gameMode)
+void SetGameModes(int& gameMode)
 {
+    int mode = 0;
+
     do
     {
-        std::cin >> mode;
-    } while (mode < 1 || mode > 3);
+        mode = _getch();
+    } while (mode < (int)KBNumbers::Uno || mode > (int)KBNumbers::Tres);
 
     switch (mode)
     {
-    case 1:
-        gameMode = 1;
+    case (int)CurrentGameMode::ThirtySel:
+        gameMode = (int)CurrentGameMode::ThirtySeconds;
         break;
 
-    case 2:
-        gameMode = 2;
+    case (int)CurrentGameMode::SingleSel:
+        gameMode = (int)CurrentGameMode::SingleLife;
         break;
 
-    case 3:
-        gameMode = 3;
+    case (int)CurrentGameMode::UnlimitedSel:
+        gameMode = (int)CurrentGameMode::Unlimited;
         break;
     }
 }

@@ -5,10 +5,16 @@
 
 void ShowTitleScreen(Color color)
 {
-	int min = 0;
-	int max = 5;
 	system("cls");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color1);
-	std::cout << "Asterisk" << "\n";
-	std::cout << "Ingrese Enter para continuar" << "\n";
+	std::cout << "	Asterisk" << "\n";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color1);
+	std::cout << "\nIngrese Enter para continuar" << "\n";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color2);
+	std::cout << "\nHecho por";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color3);
+	std::cout << " Matias Szamrynskyj" << "\n";
 }

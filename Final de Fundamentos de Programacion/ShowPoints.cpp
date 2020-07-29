@@ -4,13 +4,13 @@
 #include "Position.h"
 #include "Player.h"
 
-void ShowPoints(Player player, Color color, Position showPointsPos)
+void ShowPoints(Player player, Color infoColor, Position showPointsPos)
 {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color1);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), infoColor.color1);
     gotoxy(showPointsPos.x, showPointsPos.y);
-    std::cout << "Points" << "\n";
+    std::cout << "Puntos" << "\n";
 
     gotoxy(showPointsPos.x, showPointsPos.y + 1);
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.color2);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), infoColor.color2);
     std::cout << player.GetPoints();
 };

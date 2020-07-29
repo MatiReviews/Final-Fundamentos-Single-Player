@@ -1,8 +1,9 @@
-#include <iostream>
 #include "KBKeys.h"
 #include <conio.h>
 
-void TitleScreenOpt(char mode, int& gameMode, bool& titleScreen)
+char mode = ' ';
+
+void TitleScreenInput(bool& titleScreenOn)
 {
     do
     {
@@ -12,7 +13,7 @@ void TitleScreenOpt(char mode, int& gameMode, bool& titleScreen)
     switch (mode)
     {
     case (char)KBKeys::Enter:
-        titleScreen = false;
+        titleScreenOn = false;
         break;
     }
 }

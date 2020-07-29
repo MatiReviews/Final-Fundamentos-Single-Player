@@ -22,9 +22,6 @@
     <Filter Include="Archivos de origen\FillMatrix">
       <UniqueIdentifier>{206817c2-53c5-45f3-8380-4db65859185f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de origen\ClearMatrix">
-      <UniqueIdentifier>{3c1a04c8-7b42-4198-bf67-5847cb7048f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de origen\ShowToScreen">
       <UniqueIdentifier>{764c8a7c-3d04-41ec-be42-684aa4c8450e}</UniqueIdentifier>
     </Filter>
@@ -52,18 +49,33 @@
     <Filter Include="Archivos de origen\ScoreBoard">
       <UniqueIdentifier>{ab272647-b548-474e-b54e-f0154d29fca4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Matrix">
+      <UniqueIdentifier>{3c1a04c8-7b42-4198-bf67-5847cb7048f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Timer">
+      <UniqueIdentifier>{beed2227-c800-4c32-af7f-7c6d7fbb9269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Menu\Show">
+      <UniqueIdentifier>{ffcd6f2e-4890-4205-a35d-07c7931c19d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Menu\Input">
+      <UniqueIdentifier>{01dc26d8-3b64-4d4c-8864-f941c361583a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\ResetVars">
+      <UniqueIdentifier>{ad92b008-b79d-4acc-998a-a8a0ee132ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameModes">
+      <UniqueIdentifier>{85b0d413-4e24-48e4-a6b6-31eaae935100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Structs">
+      <UniqueIdentifier>{5c13dc79-415f-43f2-abf2-14c3f2584936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Console">
+      <UniqueIdentifier>{dd164561-ccea-4189-ac22-1334af606062}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Archivos de origen\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Archivos de origen\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Cursor.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="CollisionAsterisk.cpp">
@@ -76,10 +88,10 @@
       <Filter>Archivos de origen\Collision</Filter>
     </ClCompile>
     <ClCompile Include="ClearMatrix.cpp">
-      <Filter>Archivos de origen\ClearMatrix</Filter>
+      <Filter>Archivos de origen\Matrix</Filter>
     </ClCompile>
     <ClCompile Include="ClearPowerUp.cpp">
-      <Filter>Archivos de origen\ClearMatrix</Filter>
+      <Filter>Archivos de origen\Matrix</Filter>
     </ClCompile>
     <ClCompile Include="CollisionGodMode.cpp">
       <Filter>Archivos de origen\Collision</Filter>
@@ -117,23 +129,11 @@
     <ClCompile Include="PointsCounterActive.cpp">
       <Filter>Archivos de origen\ActiveModes</Filter>
     </ClCompile>
-    <ClCompile Include="InitPositions.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="InitColors.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="FillMatrix.cpp">
       <Filter>Archivos de origen\FillMatrix</Filter>
     </ClCompile>
     <ClCompile Include="PowerUpFill.cpp">
       <Filter>Archivos de origen\FillMatrix</Filter>
-    </ClCompile>
-    <ClCompile Include="ShowGameModes.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="SetGameModes.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
     </ClCompile>
     <ClCompile Include="CollisionPlayer.cpp">
       <Filter>Archivos de origen\Collision</Filter>
@@ -147,63 +147,96 @@
     <ClCompile Include="SetScoreTable.cpp">
       <Filter>Archivos de origen\ScoreBoard</Filter>
     </ClCompile>
-    <ClCompile Include="ShowTitleScreen.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleScreenOpt.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerInitPos.cpp">
       <Filter>Archivos de origen\Player</Filter>
     </ClCompile>
-    <ClCompile Include="ShowMainMenu.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
+    <ClCompile Include="CheckAllCollisions.cpp">
+      <Filter>Archivos de origen\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuLogic.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
+    <ClCompile Include="QuitGame.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="SetGameSpeed.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpTimer.cpp">
+      <Filter>Archivos de origen\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixTimer.cpp">
+      <Filter>Archivos de origen\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowGameTimer.cpp">
+      <Filter>Archivos de origen\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Archivos de origen\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowMainMenu.cpp">
+      <Filter>Archivos de origen\Menu\Show</Filter>
     </ClCompile>
     <ClCompile Include="ShowHowToPlay.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
+      <Filter>Archivos de origen\Menu\Show</Filter>
     </ClCompile>
-    <ClCompile Include="HowToPlayLogic.cpp">
-      <Filter>Archivos de origen\Menu</Filter>
+    <ClCompile Include="ShowGameModes.cpp">
+      <Filter>Archivos de origen\Menu\Show</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowTitleScreen.cpp">
+      <Filter>Archivos de origen\Menu\Show</Filter>
+    </ClCompile>
+    <ClCompile Include="GoToMainMenuInput.cpp">
+      <Filter>Archivos de origen\Menu\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="HowToPlayInputc.cpp">
+      <Filter>Archivos de origen\Menu\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuInput.cpp">
+      <Filter>Archivos de origen\Menu\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="SetGameModes.cpp">
+      <Filter>Archivos de origen\Menu\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScreenInput.cpp">
+      <Filter>Archivos de origen\Menu\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetGameVars.cpp">
+      <Filter>Archivos de origen\ResetVars</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMovement.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGet.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSet.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUpdate.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPointsUpdate.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDraw.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowGoToMainMenu.cpp">
+      <Filter>Archivos de origen\Menu\Show</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Archivos de origen\Console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cursor.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PowerUps.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Position.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SetColor.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SleepSpeed.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="ShowToScreen.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="ActiveModes.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMenu.h">
-      <Filter>Archivos de encabezado\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="GameModes.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ClearMatrix.h">
@@ -233,11 +266,62 @@
     <ClInclude Include="SetScoreTable.h">
       <Filter>Archivos de encabezado\ScoreBoard</Filter>
     </ClInclude>
-    <ClInclude Include="KBKeys.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="SetInitPos.h">
       <Filter>Archivos de encabezado\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimers.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuOptions.h">
+      <Filter>Archivos de encabezado\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="QuitGameCheck.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SetGameSpeed.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetGameVars.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CurrentGameMode.h">
+      <Filter>Archivos de encabezado\GameModes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameModes.h">
+      <Filter>Archivos de encabezado\GameModes</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuShow.h">
+      <Filter>Archivos de encabezado\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInput.h">
+      <Filter>Archivos de encabezado\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>Archivos de encabezado\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="SetColor.h">
+      <Filter>Archivos de encabezado\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="SleepSpeed.h">
+      <Filter>Archivos de encabezado\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps.h">
+      <Filter>Archivos de encabezado\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Archivos de encabezado\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="KBKeys.h">
+      <Filter>Archivos de encabezado\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Archivos de encabezado\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Archivos de encabezado\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Archivos de encabezado\Console</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

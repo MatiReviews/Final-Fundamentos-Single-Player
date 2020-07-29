@@ -1,48 +1,47 @@
 #include "GameMenu.h"
-#include "Color.h"
+#include "MenuShow.h"
+#include "MenuInput.h"
+#include "MenuOptions.h"
 
-void GameMenu(bool& menuOn, bool& titleScreen, bool& playing, int& gameMode, int& menuSelection, Color titleScreenColor, Color Menu)
-{      
-    int mode = 0;
-    bool goBack = false;
+bool titleScreenOn = true;
+bool goBack = false;
 
+void GameMenu(bool& menuOn, bool& playing, int& gameMode, int& menuSelection, Color titleScreenColor, Color menuColor, Color powerUpColor)
+{
     do
     {
-
         if (menuOn)
         {
-            if (titleScreen)
+            if (titleScreenOn)
             {
-                ShowTitleScreen(titleScreenColor);
-                TitleScreenOpt(mode, gameMode, titleScreen);
-                titleScreen = false;
+                ShowTitleScreen(titleScreenColor);                
+                TitleScreenInput(titleScreenOn);                
+                titleScreenOn = false;
             }
 
             ShowMainMenu();
-            MainMenuLogic(menuSelection);
+            MainMenuInput(menuSelection);
 
             switch (menuSelection)
             {
-            case 1:
-                ShowGameModes(Menu);
-                SetGameModes(mode, gameMode);
+            case (int)MenuOptions::Jugar:
+                ShowGameModes(menuColor);
+                SetGameModes(gameMode);
                 menuOn = false;
                 goBack = false;
                 break;
 
-            case 2:
-                ShowHowToPlay();
-                HowToPlayLogic(goBack);                
+            case (int)MenuOptions::ComoJugar:
+                ShowHowToPlay(powerUpColor);
+                HowToPlayInput(goBack);                
                 break;
 
-            case 3:
+            case (int)MenuOptions::Salir:
                 playing = false;
                 goBack = false;
                 break;
             }
         }
 
-    } while (goBack);
-
-    
+    } while (goBack);    
 }

@@ -1,7 +1,7 @@
 #include <conio.h>
 #include "KBKeys.h"
 
-void HowToPlayLogic(bool& goBack)
+void HowToPlayInput(bool& goBack)
 {
 	char input = ' ';
 	do

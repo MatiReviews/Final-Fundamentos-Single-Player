@@ -3,7 +3,7 @@
 #include "PowerUps.h"
 #include "MatrixObj.h"
 
-void PowerUpFill(char matrix[][cols], int maxPU)
+void PowerUpFill(char matrix[][cols], int maxPowerUps)
 {
     int cont = 0;
 
@@ -49,5 +49,5 @@ void PowerUpFill(char matrix[][cols], int maxPU)
         }
 
         cont++;
-    } while (cont < maxPU);
+    } while (cont < maxPowerUps);
 }

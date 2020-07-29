@@ -3,9 +3,8 @@
 #include "RowsCols.h"
 #include "MatrixObj.h"
 
-void MovePlayer(Player& player, char matrix[][cols])
+void PlayerInput(Player& player, char matrix[][cols], char &input)
 {
-    char input = ' ';
 
     input = _getch();
 

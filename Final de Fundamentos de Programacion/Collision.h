@@ -13,3 +13,5 @@ void SetActiveDoubleXp(Player& player);
 
 bool CollisionGodMode(Player player, char matrix[][cols]);
 
+void CheckAllCollisions(Player& player, char matrix[][cols], int scoreBoard[], int indexST, int gameMode);
+

@@ -6,21 +6,28 @@
 #include "Player.h"
 #include "RowsCols.h"
 #include "Input.h"
-#include "PowerUps.h"
+#include "ShowToScreen.h"
+#include "SetInitPos.h"
+#include "SetScoreTable.h"
+#include "SetGameSpeed.h"
 #include "SetColor.h"
 #include "Color.h"
 #include "Position.h"
-#include "ShowToScreen.h"
 #include "ClearMatrix.h"
-#include "Collision.h"
 #include "FillMatrix.h"
+#include "MatrixObj.h"
+#include "Collision.h"
 #include "Console.h"
 #include "ActiveModes.h"
-#include "MatrixObj.h"
+#include "KBKeys.h"
+#include "GameTimers.h"
+#include "QuitGameCheck.h"
+#include "ResetGameVars.h"
+#include "CurrentGameMode.h"
 #include "GameMenu.h"
-#include "SetInitPos.h"
+#include "MenuShow.h"
+#include "MenuInput.h"
 
-void ShowTimer(int gameTimer, int gameTimerCont, int gameTimerMax);
 
 int main()
 {
@@ -38,32 +45,32 @@ int main()
 
     Player player;   
 
-   
+    //Pos
+    Position timerPos;
+    timerPos.x = 33;
+    timerPos.y = 0;
+
     Position pointsPos;
-    pointsPos.x = 33;
+    pointsPos.x = 41;
     pointsPos.y = 0;
 
-    Position modePos;
-    modePos.x = 42;
-    modePos.y = 0;
+    Position powerUpPos;
+    powerUpPos.x = 49; 
+    powerUpPos.y = 0;
 
-    Position SBRecordPos;
-    SBRecordPos.x = 49;
-    SBRecordPos.y = 0;
-    
-    Position SBPointsPos;
-    SBPointsPos.x = 50;
-    SBPointsPos.y = 1;
+    Position scoreBoardRecordPos;
+    scoreBoardRecordPos.x = 59;
+    scoreBoardRecordPos.y = 0; 
 
     Position controlPos;
     controlPos.x = 33;
     controlPos.y = 10;
 
-    Position modeInfoPos;
-    modeInfoPos.x = 45;
-    modeInfoPos.y = 10;
+    Position powerUpInfoPos;
+    powerUpInfoPos.x = 49;
+    powerUpInfoPos.y = 10;
     
-
+    //Colores
     Color playerColor;
     playerColor.color1 = (int)SetColor::Brown;
 
@@ -76,27 +83,26 @@ int main()
     powerUpColor.color3 = (int)SetColor::IntenseGreen; //God Mode
     powerUpColor.color4 = (int)SetColor::White;        //Texto
 
-    Color pointsColor;
-    pointsColor.color1 = (int)SetColor::Red;
-    pointsColor.color2 = (int)SetColor::White;
+    Color scoreBoardColor;
+    scoreBoardColor.color1 = (int)SetColor::Yellow;
+    scoreBoardColor.color2 = (int)SetColor::White;
 
-    Color SBColor;
-    SBColor.color1 = (int)SetColor::Yellow;
-    SBColor.color2 = (int)SetColor::White;
+    Color activePowerUpColor;
+    activePowerUpColor.color1 = (int)SetColor::Red;
+    activePowerUpColor.color2 = (int)SetColor::White;
+    activePowerUpColor.color3 = (int)SetColor::IntenseBlue;
 
-    Color ActiveModeColor;
-    ActiveModeColor.color1 = (int)SetColor::Red;
-    ActiveModeColor.color2 = (int)SetColor::White;
-    ActiveModeColor.color3 = (int)SetColor::IntenseBlue;
+    Color titleScreenColor;
+    titleScreenColor.color1 = (int)SetColor::IntenseGreen;
+    titleScreenColor.color2 = (int)SetColor::IntenseBlue;
+    titleScreenColor.color3 = (int)SetColor::IntenseRed;
 
-    Color controlColor;
-    controlColor.color1 = (int)SetColor::White;
+    Color menuColor;
+    menuColor.color1 = (int)SetColor::White;
 
-    Color TitleScreenColor;
-    TitleScreenColor.color1 = (int)SetColor::IntenseGreen;
-
-    Color MenuColor;
-    MenuColor.color1 = (int)SetColor::White;
+    Color infoColor;
+    infoColor.color1 = (int)SetColor::Red;
+    infoColor.color2 = (int)SetColor::White;
 
     SleepSpeed gameSpeed;
     gameSpeed.fast = 50;
@@ -117,522 +123,157 @@ int main()
                                 {Wall,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',Wall},
                                 {Wall,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',Wall},
                                 {Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall} };
+    
+    int contMatrix = 0;
+    int maxContMatrix = 9; //ciclos a esperar para refrescar el mapa
 
-    int cont = 0;
-    int cont2 = 0;
-    int max = 9;   //ciclos a esperar para refrescar el mapa
-    int max2 = 27; //ciclos a esperar para refrescar el mapa
-    int maxPU = 2; //Cantidad de PowerUp por el mapa    
-    int RFMax = 15; //Cantidad de Asteriscos por el mapa
+    int contPowerUps = 0;
+    int maxContPowerUps = 27; //ciclos a esperar para refrescar el mapa
+
+    int maxAsterisks = 15; //Cantidad de Asteriscos por el mapa
+    int maxPowerUps = 2;  //Cantidad de PowerUp el mapa por actualización
 
     int indexST = -1;
-    int scoreBoard[cantScores] = { 0 };  
+    int scoreBoard[cantScores] = { 0 }; 
 
     int gameTimer = 30;
     int gameTimerCont = 0;
-    int gameTimerMax = 6;    
+    int gameTimerMax = 6;  //ciclos que espera el juego para restarle tiempo a gameTimer.
 
     int option = 0;
-    char optionChar = ' ';
 
     int menuSelection = 0;
     int gameMode = 0;
 
     bool playing = true;
     bool menuOn = true;
-    bool titleScreenOn = true;
 
-    FillMatrix(matrix, RFMax);
-    PowerUpFill(matrix, maxPU);
+    char input = ' ';
+
+    FillMatrix(matrix, maxAsterisks);
+    PowerUpFill(matrix, maxPowerUps);
     
     SetInitPos(player, matrix);
-
+ 
     while (playing)
-    {
+    {     
+   
+        GameMenu(menuOn, playing,  gameMode, menuSelection, titleScreenColor, menuColor, powerUpColor);
 
-        GameMenu(menuOn, titleScreenOn, playing,  gameMode, menuSelection,TitleScreenColor, MenuColor);
-
+        //Input
         if (playing)
         {
-            //Input
             if (_kbhit())
             {
-                MovePlayer(player, matrix);
+                PlayerInput(player, matrix, input);
             }
+        }
 
-            if (player.GetFastMode())
-            {
-                gameTimerMax = 9;
-            }
-            else
-            {
-                gameTimerMax = 6;
-            }
-
-            //Actualizacion
+        //Actualizacion
+        if (playing)
+        {
+            SetSpeedTimer(player, gameTimerMax);
 
             //Set Mode
             switch (gameMode)
             {
-            case (int)CurrentGameMode::ThirtySeconds:
-                if (gameTimerCont != gameTimerMax || gameTimerCont == gameTimerMax)
-                {
-                    gameTimerCont++;
-
-                    if (gameTimerCont >= gameTimerMax)
-                    {
-                        gameTimer--;
-                        gameTimerCont = 0;
-
-                        if (gameTimer == 0)
-                        {
-                            playing = false;
-                        }
-                    }
-                }
+            case (int)CurrentGameMode::ThirtySeconds:  
+                QuitGameCheck(input, playing);
+                GameTimer(gameTimerCont, gameTimerMax, gameTimer, playing);
                 break;
 
-            case (int)CurrentGameMode::SingleLife:  
-
-                if (PlayerCollision(player, matrix) && player.GetGodMode() != true)
+            case (int)CurrentGameMode::SingleLife:
+                if (PlayerCollision(player, matrix) && player.GetGodMode() != true || input == (char)KBKeys::Esc)
                 {
                     playing = false;
                 }
+                powerUpPos.x = 41;
+                pointsPos.x = 33;
                 break;
 
             case (int)CurrentGameMode::Unlimited:
-                playing = true;
+                QuitGameCheck(input, playing);
+                pointsPos.x = 33;
+                powerUpPos.x = 41;
+                scoreBoardRecordPos.x = 51;
                 break;
             }
 
-            if (cont == max)
-            {
-                ClearMatrix(matrix);
-                FillMatrix(matrix, RFMax);
-                cont = 0;
-            }
-            cont++;
+            MatrixTimer(matrix, maxAsterisks, contMatrix, maxContMatrix);
+            PowerUpTimer(matrix, contPowerUps, maxContPowerUps, maxPowerUps);
 
-            if (cont2 == max2)
-            {
-                ClearPowerUp(matrix);
-                PowerUpFill(matrix, maxPU);
-                cont2 = 0;
-            }
-            cont2++;
-
-            if (CollisionGodMode(player, matrix))
-            {
-                player.SetGodMode(true);
-            }
-
-            if (gameMode != 2)
-            {
-                CollisionAsterisk(player, matrix, scoreBoard, indexST);
-            }
-
-            if (CollisionSpeedMode(player, matrix))
-            {
-                player.SetFastMode(true);
-            }
-
-            if (CollisionDoubleXpMode(player, matrix))
-            {
-                SetActiveDoubleXp(player);
-            }
+            CheckAllCollisions(player, matrix, scoreBoard, indexST, gameMode);
 
             PointsCounterActive(player);
             DoubleXpActive(player);
             GodModeActive(player);
-
             system("cls");
         }
-        
+
         //Dibujado
         if (playing)
         {
             ShowMatrix(matrix, matrixColor, powerUpColor);
             player.DrawPlayer(player, playerColor);
-            ShowPoints(player, pointsColor, pointsPos);
-            ShowControls(controlColor, controlPos);
-            ShowActiveMode(player, modePos, ActiveModeColor);
-
-            if (gameMode != 2)
-            {
-                ShowScoreBoard(scoreBoard, SBColor, SBRecordPos, SBPointsPos);
-            }
-
-            ShowModesInfo(modeInfoPos, powerUpColor); 
-
-            //Timer On / Off
-            switch (gameMode)
-            {
-            case 1:
-                ShowTimer(gameTimer, gameTimerCont, gameTimerMax);
-                break;
-            }
+            ShowPoints(player, infoColor, pointsPos);
+            ShowControls(infoColor, controlPos);
+            ShowActivePowerUp(player, powerUpPos, activePowerUpColor);            
+            ShowScoreBoard(gameMode, scoreBoard, scoreBoardColor, scoreBoardRecordPos);
+            ShowPowerUpInfo(powerUpInfoPos, powerUpColor);
+            ShowGameTimer(infoColor,gameMode, gameTimer, timerPos);
         }
 
         //Mensaje que se muestra al terminar la partida o morir.
         if (playing != true && menuSelection != 3)
-        {
+        {  
             switch (gameMode)
             {
+            case (int)CurrentGameMode::ThirtySeconds:
+                std::cout << "Se agoto el tiempo" << "\n";
+
+                SetScoreTable(scoreBoard, player, indexST);
+
+                scoreBoardRecordPos.x = 0;
+                scoreBoardRecordPos.y = 2;
+               
+                ShowScoreBoard(gameMode,scoreBoard, scoreBoardColor, scoreBoardRecordPos);                 
+                break;
+
             case (int)CurrentGameMode::SingleLife:
                 std::cout << "Perdiste" << "\n";
                 std::cout << "Puntuacion Maxima: " << player.GetPoints() << "\n";
                 break;
 
-            case (int)CurrentGameMode::ThirtySeconds:
-                bool entra = false;
-
-                std::cout << "Se agoto el tiempo" << "\n";
-
-                SBRecordPos.x = 0;
-                SBRecordPos.y = 2;
-                SBPointsPos.x = 0;
-                SBPointsPos.y = 3;
-
-                for (int i = 0; i < cantScores; i++)
-                {
-                    if (scoreBoard[i] != 0)
-                    {
-                        ShowScoreBoard(scoreBoard, SBColor, SBRecordPos, SBPointsPos);
-                    }
-                    else
-                    {
-                        entra = true;
-                    }
-                    break;
-                }
-
-                if (entra != false)
-                {
-                    std::cout << "Tu puntuacion fue de: " << player.GetPoints() << "\n";
-                }
+            case (int)CurrentGameMode::Unlimited:
+                std::cout << "Puntuacion Maxima: " << player.GetPoints() << "\n";
                 break;
             }
         }
 
-
-        //Para ir al menú principal, volver a jugar o salir
+        //Para ir al menú principal o salir
         if(playing != true && menuSelection != 3)
         {
-            std::cout << "\nVolver al menu principal" << "\n";
-            std::cout << "1 - Si" << "\n";
-            std::cout << "2 - No" << "\n";
-
-            do
-            {
-                std::cin >> option;
-            } while (option < 1 || option > 2);
+            ShowGoToMainMenu();
+            GoToMainMenuInput(option);
 
             switch (option)
             {
-            case 1:
-                menuOn = true;
-                playing = true;
-                gameTimer = 30;
-                player.SetPoints(0);
-                player.SetGodMode(false);
-                player.SetFastMode(false);
-                player.SetDoubleXpMode(false);
-                SBPointsPos.x = 50;
-                SBPointsPos.y = 1;
-                SBRecordPos.x = 49;
-                SBRecordPos.y = 0;
-                for (int i = 0; i < cantScores; i++)
-                {
-                    scoreBoard[i] = 0;
-                }
+             //Reset de variables
+            case (int)KBNumbers::Uno:
+                ResetGameVars(player, menuOn, playing, gameTimer, input, scoreBoardRecordPos);
+                ResetGameVars(timerPos, pointsPos, powerUpPos, scoreBoardRecordPos);
+                ResetGameVars(scoreBoard);
                 ClearMatrix(matrix);
-                FillMatrix(matrix, RFMax);
+                FillMatrix(matrix, maxAsterisks);
                 SetInitPos(player, matrix);
                 break;
 
-            case 2:
-                menuOn = false;
+            case (int)KBNumbers::Dos:
+                std::cout << "\nGracias por Jugar" << "\n";
                 break;
             }
         }
 
         GameSpeedActive(player,gameSpeed);
-
     } 
 }
-
-void ShowTimer(int gameTimer, int gameTimerCont, int gameTimerMax)
-{
-    gotoxy(5,18);
-    std::cout << "Time Left: "<< gameTimer << "\n";
-    gotoxy(5, 19);
-    std::cout << "game Timer Cont: " << gameTimerCont << "\n";
-    gotoxy(5, 20);
-    std::cout << "game Timer Max: " << gameTimerMax << "\n";
-}
-
-/*
-    #include <iostream>
-    #include <Windows.h>
-
-
-    const unsigned int width = 800;
-    const unsigned int height = 600;
-
-    SetGameConsoleSize(width, height);
-
-    //Seteo el tamaño de la consola
-    void SetGameConsoleSize(int lenght, int height)
-    {
-        HWND console = GetConsoleWindow();
-        RECT ConsoleRect;
-        GetWindowRect(console, &ConsoleRect);
-        MoveWindow(console, ConsoleRect.left, ConsoleRect.top, lenght, height, TRUE);
-    }
-
-    //Lo utilizo para saber la cantidad de filas y columnas que tengo en la consola.
-    void DBGetConsoleSize()
-    {
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        int columns, rows;
-        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-        columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
-        rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-
-        std::cout << "columns: " << columns << "\n";
-        std::cout << "rows: " << rows << "\n";
-    }
-
-    enum class Arrows
-    {
-        Up = 56,
-        Down = 50,
-        Left = 52,
-        Right = 54,
-        UpRight = 57,
-        UpLeft = 55,
-        DownRight = 51,
-        DownLeft = 49
-    };
-
-    enum class KBKeys
-    {
-        Enter = 13,
-        Esc = 27
-    };
-*/
-
-//GameMode y Seleccion jugador
-/*
-
-void GameMode(int color, int color2)
-{
-	system("cls");
-
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-	std::cout << "Select Game Mode " << "\n\n";
-
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-	std::cout << "1 Player Mode ";
-
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color2);
-	std::cout << "   " << " 2 Players Mode " << "\n";
-}
-
-int SelectCharacterMenu(Player player[])
-{
-	char input = ' ';
-	int Single = 1;
-	int Coop = 2;
-	int Mode = 0;
-	std::cout << "Select Game Mode " << "\n\n";
-	std::cout << "1 Player Mode " << "   " << " 2 Players Mode " << "\n";
-
-	while (input != 'c')
-	{
-		input = _getch();
-
-		switch (input)
-		{
-		case 'a':
-		case 'A':
-			GameMode(4, 7);
-			Mode = Single;
-			break;
-
-		case 'd':
-		case 'D':
-			GameMode(7, 4);
-			Mode = Coop;
-			break;
-		}
-	}
-
-	switch (Mode)
-	{
-	case 1:
-		return Single;
-		break;
-
-	case 2:
-		return Coop;
-		break;
-	}
-}
-
-void ShowPlayers(Player player[], int mode)
-{
-	switch (mode)
-	{
-	case 1:
-		player[0].DrawCharacter(player[0].GetPosX(), player[0].GetPosY());
-		break;
-
-	case 2:
-		player[0].DrawCharacter(player[0].GetPosX(), player[0].GetPosY());
-		player[1].DrawCharacter(player[1].GetPosX(), player[1].GetPosY());
-		break;
-	}
-}
-
-*/
-
-//Inputs
-/*
-void FirstPlayerInput(Player& player, char input)
-{
-    switch (input)
-    {
-    case 'w':
-        player.moveUp();
-        break;
-
-    case 's':
-        player.moveDown();
-        break;
-
-    case 'a':
-        player.moveLeft();
-        break;
-
-    case 'd':
-        player.moveRight();
-        break;
-
-        //Diagonales
-    case 'e':
-        player.moveUpRight();
-        break;
-
-    case 'q':
-        player.moveUpLeft();
-        break;
-
-    case 'c':
-        player.moveDownRight();
-        break;
-
-    case 'z':
-        player.moveDownLeft();
-        break;
-    }
-}
-
-void SecondPlayerInput(Player& player, char input)
-{
-    switch (input)
-    {
-    case (int)Arrows::Up:
-        player.moveUp();
-        break;
-
-    case (int)Arrows::Down:
-        player.moveDown();
-        break;
-
-    case (int)Arrows::Left:
-        player.moveLeft();
-        break;
-
-    case (int)Arrows::Right:
-        player.moveRight();
-        break;
-
-        //Diagonales
-    case (int)Arrows::UpRight:
-        player.moveUpRight();
-        break;
-
-    case (int)Arrows::UpLeft:
-        player.moveUpLeft();
-        break;
-
-    case (int)Arrows::DownRight:
-        player.moveDownRight();
-        break;
-
-    case (int)Arrows::DownLeft:
-        player.moveDownLeft();
-        break;
-    }
-}
-
-void PlayerInputs(Player player[], char input, int mode)
-{
-    switch (mode)
-    {
-    case 1:
-        FirstPlayerInput(player[0], input);
-        break;
-
-    case 2:
-        FirstPlayerInput(player[0], input);
-        SecondPlayerInput(player[1], input);
-        break;
-    }
-}
-
-*/
-
-//Colores
-/*
-enum class Color
-{
-    Black = 0,
-    Blue = 1,
-    Green = 2,
-    Cyan = 3,
-    Red = 4,
-    Magenta = 5,
-    Brown = 6,
-    White = 7,
-    Gray = 8,
-    IntenseBlue = 9,
-    IntenseGreen = 10,
-    IntenseCyan = 11,
-    IntenseRed = 12,
-    IntenseMagenta = 13,
-    Yellow = 14,
-    IntenseWhite = 15
-};
-
-struct SetColor
-{
-    int selected;
-    int unSelected;
-};
-*/
-
-/*
-enum class Screens
-{
-    TitleScreen,
-    MainMenu,
-    Gameplay,
-    Play,
-    Controls,
-    Credits,
-    QuitGame
-};
-
-*/
