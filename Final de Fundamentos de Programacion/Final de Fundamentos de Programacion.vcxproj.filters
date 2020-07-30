@@ -73,6 +73,9 @@
     <Filter Include="Archivos de encabezado\Console">
       <UniqueIdentifier>{dd164561-ccea-4189-ac22-1334af606062}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Others">
+      <UniqueIdentifier>{af844928-82b2-4af7-89c4-605068e4059a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -153,12 +156,6 @@
     <ClCompile Include="CheckAllCollisions.cpp">
       <Filter>Archivos de origen\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="QuitGame.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="SetGameSpeed.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="PowerUpTimer.cpp">
       <Filter>Archivos de origen\Timer</Filter>
     </ClCompile>
@@ -227,6 +224,12 @@
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Archivos de origen\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="QuitGame.cpp">
+      <Filter>Archivos de origen\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="SetGameSpeed.cpp">
+      <Filter>Archivos de origen\Others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

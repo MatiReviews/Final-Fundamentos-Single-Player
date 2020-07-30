@@ -30,7 +30,7 @@ void ShowHowToPlay(Color powerUpColor)
 
 	std::cout << "\n3.Tiempo Ilimitado:" << "\n";
 	std::cout << "Como el nombre lo indica, podra jugar sin tiempo limite procurando hacer la mayor\npuntuacion posible. " << "\n";
-	std::cout << "Para salir de este modo, aprete la tecla ESC en su teclado." << "\n";
+	std::cout << "Para salir de este o cualquier otro modo , aprete la tecla ESC en su teclado." << "\n";
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)SetColor::IntenseGreen);
 	std::cout << "\nPower Ups." << "\n";

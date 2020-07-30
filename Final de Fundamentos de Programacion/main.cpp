@@ -32,10 +32,10 @@
 int main()
 {
 
+    SetConsoleTitle(TEXT("Asterisk"));
+
     const unsigned int ConsoleWidth = 1280;
     const unsigned int ConsoleHeight = 768;
-
-    SetConsoleTitle(TEXT("Asterisk"));
 
     SetGameConsoleSize(ConsoleWidth, ConsoleHeight);
 
@@ -131,7 +131,7 @@ int main()
     int maxContPowerUps = 27; //ciclos a esperar para refrescar el mapa
 
     int maxAsterisks = 15; //Cantidad de Asteriscos por el mapa
-    int maxPowerUps = 2;  //Cantidad de PowerUp el mapa por actualización
+    int maxPowerUps = 2;  //Cantidad de PowerUp por el mapa
 
     int indexST = -1;
     int scoreBoard[cantScores] = { 0 }; 
