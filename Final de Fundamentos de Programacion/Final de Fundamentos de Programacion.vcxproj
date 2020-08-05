@@ -181,6 +181,7 @@
     <ClCompile Include="ShowActiveMode.cpp" />
     <ClCompile Include="ShowControls.cpp" />
     <ClCompile Include="ShowGameModes.cpp" />
+    <ClCompile Include="ShowGameOverScreen.cpp" />
     <ClCompile Include="ShowGameTimer.cpp" />
     <ClCompile Include="ShowGoToMainMenu.cpp" />
     <ClCompile Include="ShowHowToPlay.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="ShowPoints.cpp" />
     <ClCompile Include="ShowScoreTable.cpp" />
     <ClCompile Include="ShowTitleScreen.cpp" />
+    <ClCompile Include="SingleLifePlaying.cpp" />
     <ClCompile Include="TitleScreenInput.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +225,7 @@
     <ClInclude Include="PowerUps.h" />
     <ClInclude Include="RowsCols.h" />
     <ClInclude Include="ShowToScreen.h" />
+    <ClInclude Include="SingleLifePlaying.h" />
     <ClInclude Include="SleepSpeed.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

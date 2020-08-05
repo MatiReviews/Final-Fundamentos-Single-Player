@@ -18,6 +18,8 @@ void ShowHowToPlay(Color powerUpColor)
 	std::cout << "\nEl jugador es 'P' y durante su sesion de juego, estara en un mapa en donde se\ngeneraran asteriscos(*), los cuales debera evitar para poder juntar la mayor" << "\n";
 	std::cout << "cantidad de puntos al terminar la partida." << "\n";
 
+	std::cout << "\nLos asteriscos pueden aparecer en la posicion del jugador, incluso estando quieto\no moviendose por el mapa, haciendo que pierda los puntos ganados." << "\n";
+
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)SetColor::IntenseGreen);
 	std::cout << "\nModos de Juego:" << "\n";
 

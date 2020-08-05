@@ -27,14 +27,14 @@
 #include "GameMenu.h"
 #include "MenuShow.h"
 #include "MenuInput.h"
-
+#include "SingleLifePlaying.h"
 
 int main()
 {
 
     SetConsoleTitle(TEXT("Asterisk"));
 
-    const unsigned int ConsoleWidth = 1280;
+    const unsigned int ConsoleWidth = 1366;
     const unsigned int ConsoleHeight = 768;
 
     SetGameConsoleSize(ConsoleWidth, ConsoleHeight);
@@ -158,8 +158,8 @@ int main()
     while (playing)
     {     
    
-        GameMenu(menuOn, playing,  gameMode, menuSelection, titleScreenColor, menuColor, powerUpColor);
-
+        GameMenu(menuOn, playing,  gameMode, menuSelection, titleScreenColor, menuColor, powerUpColor);              
+       
         //Input
         if (playing)
         {
@@ -183,10 +183,8 @@ int main()
                 break;
 
             case (int)CurrentGameMode::SingleLife:
-                if (PlayerCollision(player, matrix) && player.GetGodMode() != true || input == (char)KBKeys::Esc)
-                {
-                    playing = false;
-                }
+                QuitGameCheck(input, playing);
+                SingleLifePlaying(player, matrix, playing);
                 powerUpPos.x = 41;
                 pointsPos.x = 33;
                 break;
@@ -202,6 +200,7 @@ int main()
             MatrixTimer(matrix, maxAsterisks, contMatrix, maxContMatrix);
             PowerUpTimer(matrix, contPowerUps, maxContPowerUps, maxPowerUps);
 
+            //Poner todo en un solo archivo
             CheckAllCollisions(player, matrix, scoreBoard, indexST, gameMode);
 
             PointsCounterActive(player);
@@ -221,38 +220,15 @@ int main()
             ShowScoreBoard(gameMode, scoreBoard, scoreBoardColor, scoreBoardRecordPos);
             ShowPowerUpInfo(powerUpInfoPos, powerUpColor);
             ShowGameTimer(infoColor,gameMode, gameTimer, timerPos);
-        }
+        }    
 
-        //Mensaje que se muestra al terminar la partida o morir.
-        if (playing != true && menuSelection != 3)
-        {  
-            switch (gameMode)
-            {
-            case (int)CurrentGameMode::ThirtySeconds:
-                std::cout << "Se agoto el tiempo" << "\n";
-
-                SetScoreTable(scoreBoard, player, indexST);
-
-                scoreBoardRecordPos.x = 0;
-                scoreBoardRecordPos.y = 2;
-               
-                ShowScoreBoard(gameMode,scoreBoard, scoreBoardColor, scoreBoardRecordPos);                 
-                break;
-
-            case (int)CurrentGameMode::SingleLife:
-                std::cout << "Perdiste" << "\n";
-                std::cout << "Puntuacion Maxima: " << player.GetPoints() << "\n";
-                break;
-
-            case (int)CurrentGameMode::Unlimited:
-                std::cout << "Puntuacion Maxima: " << player.GetPoints() << "\n";
-                break;
-            }
-        }
-
-        //Para ir al menú principal o salir
+        //Al terminar de jugar
         if(playing != true && menuSelection != 3)
         {
+            //Mensaje que se muestra al terminar la partida o morir.
+            ShowGameOverScreen(player, gameMode, scoreBoard, indexST, scoreBoardColor, scoreBoardRecordPos);
+
+            //Para ir al menú principal o salir
             ShowGoToMainMenu();
             GoToMainMenuInput(option);
 
@@ -265,14 +241,14 @@ int main()
                 ResetGameVars(scoreBoard);
                 ClearMatrix(matrix);
                 FillMatrix(matrix, maxAsterisks);
-                SetInitPos(player, matrix);
+                SetInitPos(player, matrix);                
                 break;
 
             case (int)KBNumbers::Dos:
                 std::cout << "\nGracias por Jugar" << "\n";
                 break;
             }
-        }
+        }       
 
         GameSpeedActive(player,gameSpeed);
     } 

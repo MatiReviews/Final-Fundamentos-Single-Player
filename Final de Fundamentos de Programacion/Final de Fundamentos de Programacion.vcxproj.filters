@@ -231,6 +231,12 @@
     <ClCompile Include="SetGameSpeed.cpp">
       <Filter>Archivos de origen\Others</Filter>
     </ClCompile>
+    <ClCompile Include="SingleLifePlaying.cpp">
+      <Filter>Archivos de origen\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowGameOverScreen.cpp">
+      <Filter>Archivos de origen\ShowToScreen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShowToScreen.h">
@@ -325,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="Cursor.h">
       <Filter>Archivos de encabezado\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleLifePlaying.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -22,3 +22,5 @@ void ShowPowerUpInfo(Position modeInfoPos, Color powerUpColor);
 //Muestra el tiempo restante
 
 void ShowGameTimer(Color timerColor, int gameMode, int gameTimer, Position timer);
+
+void ShowGameOverScreen(Player player, int gameMode, int scoreBoard[cantScores], int indexST, Color scoreBoardColor, Position& recordPos);
